@@ -1,0 +1,7 @@
+../Core/TPM/commandfuncs.c:37:14:findCommand	24	static
+../Core/TPM/commandfuncs.c:53:14:findFuncPtr	24	static
+../Core/TPM/commandfuncs.c:69:6:init_xferbuf	16	static
+../Core/TPM/commandfuncs.c:78:6:commandHandler	40	static
+../Core/TPM/commandfuncs.c:158:6:genericFunc	16	static
+../Core/TPM/commandfuncs.c:177:6:error_notification	24	static
+../Core/TPM/commandfuncs.c:246:6:success_post_processing	24	static

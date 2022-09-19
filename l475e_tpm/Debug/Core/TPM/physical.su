@@ -1,0 +1,4 @@
+../Core/TPM/physical.c:15:6:dumpXferBuf	16	static
+../Core/TPM/physical.c:31:9:spi_master_transfer	32	static
+../Core/TPM/physical.c:51:10:spi_transfer	40	static
+../Core/TPM/physical.c:103:6:sendCommand	96	static
