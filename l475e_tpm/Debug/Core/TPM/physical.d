@@ -29,8 +29,9 @@ Core/TPM/physical.o: ../Core/TPM/physical.c ../Core/TPM/physical.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi_ex.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h \
- ../Core/Inc/usart.h ../Core/Inc/main.h ../Core/TPM/globals.h \
- ../Core/Inc/spi.h
+ ../Core/TPM/commandStructs.h ../Core/TPM/authHandler.h \
+ ../Core/TPM/globals.h ../Core/TPM/utils.h ../Core/Inc/usart.h \
+ ../Core/Inc/main.h ../Core/Inc/spi.h ../Core/TPM/conf_board.h
 ../Core/TPM/physical.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:
@@ -63,7 +64,11 @@ Core/TPM/physical.o: ../Core/TPM/physical.c ../Core/TPM/physical.h \
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi_ex.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h:
+../Core/TPM/commandStructs.h:
+../Core/TPM/authHandler.h:
+../Core/TPM/globals.h:
+../Core/TPM/utils.h:
 ../Core/Inc/usart.h:
 ../Core/Inc/main.h:
-../Core/TPM/globals.h:
 ../Core/Inc/spi.h:
+../Core/TPM/conf_board.h:

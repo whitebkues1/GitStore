@@ -1,1 +1,12 @@
-../Core/TPM/utils.c:7:10:convertArrayToLong	24	static
+../Core/TPM/utils.c:17:6:resetTPM	4	static
+../Core/TPM/utils.c:36:6:OSAPHandler	40	static
+../Core/TPM/utils.c:81:6:getRandomNum	24	static
+../Core/TPM/utils.c:107:6:getNonceOdd	16	static
+../Core/TPM/utils.c:121:6:convertLongToArray	16	static
+../Core/TPM/utils.c:130:6:convertIntToArray	16	static
+../Core/TPM/utils.c:137:10:convertArrayToLong	24	static
+../Core/TPM/utils.c:162:10:convertArrayToInt	24	static
+../Core/TPM/utils.c:175:6:showKnownKeys	40	static
+../Core/TPM/utils.c:204:9:selectHandleSlot	40	static
+../Core/TPM/utils.c:273:6:flushBS	32	static
+../Core/TPM/utils.c:284:6:send_usb	16	static

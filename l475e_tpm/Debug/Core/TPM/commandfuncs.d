@@ -1,5 +1,5 @@
-Core/TPM/commandfuncs.o: ../Core/TPM/commandfuncs.c \
- ../Core/TPM/commandfuncs.h ../Core/Inc/main.h \
+Core/TPM/commandFuncs.o: ../Core/TPM/commandFuncs.c \
+ ../Core/TPM/commandFuncs.h ../Core/Inc/main.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h \
  ../Core/Inc/stm32l4xx_hal_conf.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc.h \
@@ -30,10 +30,12 @@ Core/TPM/commandfuncs.o: ../Core/TPM/commandfuncs.c \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi_ex.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h \
- ../Core/TPM/commandstructs.h ../Core/Inc/usart.h ../Core/Inc/main.h \
- ../Core/TPM/globals.h ../Core/TPM/tpm_errors.h ../Core/TPM/utils.h \
- ../Core/TPM/physical.h
-../Core/TPM/commandfuncs.h:
+ ../Core/TPM/nvStoreFuncs.h ../Core/TPM/globals.h \
+ ../Core/TPM/authHandler.h ../Core/TPM/commandStructs.h \
+ ../Core/TPM/utils.h ../Core/TPM/hashFuncs.h ../Core/TPM/TCG_tpm.h \
+ ../Core/TPM/TPM_errors.h ../Core/TPM/physical.h ../Core/Inc/usart.h \
+ ../Core/Inc/main.h
+../Core/TPM/commandFuncs.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:
 ../Core/Inc/stm32l4xx_hal_conf.h:
@@ -65,10 +67,14 @@ Core/TPM/commandfuncs.o: ../Core/TPM/commandfuncs.c \
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi_ex.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h:
-../Core/TPM/commandstructs.h:
+../Core/TPM/nvStoreFuncs.h:
+../Core/TPM/globals.h:
+../Core/TPM/authHandler.h:
+../Core/TPM/commandStructs.h:
+../Core/TPM/utils.h:
+../Core/TPM/hashFuncs.h:
+../Core/TPM/TCG_tpm.h:
+../Core/TPM/TPM_errors.h:
+../Core/TPM/physical.h:
 ../Core/Inc/usart.h:
 ../Core/Inc/main.h:
-../Core/TPM/globals.h:
-../Core/TPM/tpm_errors.h:
-../Core/TPM/utils.h:
-../Core/TPM/physical.h:

@@ -1,10 +1,15 @@
 #ifndef CMDSTRUCT_H
 #define CMDSTRUCT_H
+
 #include "main.h"
+// #defines
+// new GCC complains when PGM_P used with unsigned chars...
+//#define const uint8_t*   const prog_uint8_t *
 
 // enums
 typedef enum { AUTH0, AUTH1, AUTH2 } authNum;
 typedef enum { HAND0, HAND1, HAND2 } handleNum;
+
 
 typedef enum{
 	TPM_CMD_STARTUP_CLEAR,
@@ -44,6 +49,14 @@ typedef enum{
 	/*10.10����*/
 	TPM_GET_BIG_PRIME_128
 }  tpmCommand;
+ 
+
+
+
+// typedefs
+
+
+
 
 
 // command structure
@@ -57,10 +70,13 @@ typedef struct tdTPM_Command
 	authNum		numAuths;
 	handleNum	numInHandles;
 	handleNum	numOutHandles;
-
+	
 }	TPM_Command;
 
+
+
 /* command function pointer */
+//typedef void (*funcPtr)(void *);
 typedef void (*funcPtr)(TPM_Command *pCommand);
 
 
@@ -71,11 +87,16 @@ typedef struct tdTPM_FuncPtr
 	funcPtr 	commandFunc;
 }	TPM_FuncPtr;
 
-TPM_Command *findCommand(const char *commandName);
-TPM_FuncPtr *findFuncPtr(const char *commandName);
 
+
+TPM_Command *findCommand(const char *commandName);
+//TPM_Command *loadCommand(tpm_command commandName);
+TPM_FuncPtr *findFuncPtr(const char *commandName);
+void printCommand(char *commandName);
+void listCommands(void);
 
 // defines
+
 #define CMDTABLESIZE (sizeof(commandTable))
 #define NUMCOMMANDS (sizeof(commandTable) / sizeof(TPM_Command))
 
@@ -85,5 +106,9 @@ extern TPM_FuncPtr FuncPtrTable[];
 extern uint16_t numCommands;
 extern uint16_t commandTableSize;
 
+extern unsigned char ownAuth[];
+extern unsigned char SRKAuth[];
+extern unsigned char nonceC[];
+extern unsigned char compPubEK[];
 
 #endif

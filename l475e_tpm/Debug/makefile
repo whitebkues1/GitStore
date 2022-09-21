@@ -62,7 +62,7 @@ main-build: l475e_tpm.elf secondary-outputs
 
 # Tool invocations
 l475e_tpm.elf l475e_tpm.map: $(OBJS) $(USER_OBJS) F:\STM32CubeIDE\workspace_firebbs\l475e_tpm\STM32L475VGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "l475e_tpm.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"F:\STM32CubeIDE\workspace_firebbs\l475e_tpm\STM32L475VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="l475e_tpm.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+	arm-none-eabi-gcc -o "l475e_tpm.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"F:\STM32CubeIDE\workspace_firebbs\l475e_tpm\STM32L475VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="l475e_tpm.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

@@ -1,0 +1,10 @@
+../Core/TPM/hashfuncs.c:53:7:sha1_start	16	static
+../Core/TPM/hashfuncs.c:58:7:sha1_update	32	static
+../Core/TPM/hashfuncs.c:98:7:sha1_finish	32	static
+../Core/TPM/hashfuncs.c:152:7:sha1_csum	24	static
+../Core/TPM/hashfuncs.c:160:7:sha1_hmac	120	static
+../Core/TPM/hashfuncs.c:167:7:hmac_start	32	static
+../Core/TPM/hashfuncs.c:190:7:hmac_update	24	static
+../Core/TPM/hashfuncs.c:194:7:hmac_finish	32	static
+../Core/TPM/hashfuncs.c:227:6:shaEngine	48	static
+../Core/TPM/hashfuncs.c:316:13:unpackShaH	24	static

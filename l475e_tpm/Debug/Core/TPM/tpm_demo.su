@@ -1,2 +1,2 @@
-../Core/TPM/tpm_demo.c:6:9:menuHandler	16	static
-../Core/TPM/tpm_demo.c:51:6:doCommand	16	static
+../Core/TPM/tpm_demo.c:14:9:menuHandler	16	static
+../Core/TPM/tpm_demo.c:63:6:doCommand	16	static

@@ -1,4 +1,11 @@
-../Core/TPM/physical.c:15:6:dumpXferBuf	16	static
-../Core/TPM/physical.c:31:9:spi_master_transfer	32	static
-../Core/TPM/physical.c:51:10:spi_transfer	40	static
-../Core/TPM/physical.c:103:6:sendCommand	96	static
+../Core/TPM/physical.c:105:13:spi_master_initialize	4	static
+../Core/TPM/physical.c:130:6:spi_set_clock_configuration	16	static
+../Core/TPM/physical.c:140:6:twi_init	4	static
+../Core/TPM/physical.c:156:6:dumpXferBuf	16	static
+../Core/TPM/physical.c:171:6:logStartTries	16	static
+../Core/TPM/physical.c:176:6:convertHexToAsciiString	16	static
+../Core/TPM/physical.c:188:9:spi_master_transfer	32	static
+../Core/TPM/physical.c:239:6:get_moredata_value	24	static
+../Core/TPM/physical.c:256:6:flush_tpm	24	static
+../Core/TPM/physical.c:289:10:spi_transfer	48	static
+../Core/TPM/physical.c:440:6:sendCommand	104	static

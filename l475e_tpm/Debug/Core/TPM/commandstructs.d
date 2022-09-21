@@ -1,5 +1,5 @@
 Core/TPM/commandstructs.o: ../Core/TPM/commandstructs.c \
- ../Core/TPM/commandstructs.h ../Core/Inc/main.h \
+ ../Core/TPM/commandStructs.h ../Core/Inc/main.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h \
  ../Core/Inc/stm32l4xx_hal_conf.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc.h \
@@ -30,8 +30,9 @@ Core/TPM/commandstructs.o: ../Core/TPM/commandstructs.c \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi_ex.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h \
- ../Core/TPM/commandfuncs.h
-../Core/TPM/commandstructs.h:
+ ../Core/TPM/commandFuncs.h ../Core/TPM/nvStoreFuncs.h \
+ ../Core/TPM/globals.h ../Core/TPM/authHandler.h ../Core/TPM/utils.h
+../Core/TPM/commandStructs.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:
 ../Core/Inc/stm32l4xx_hal_conf.h:
@@ -63,4 +64,8 @@ Core/TPM/commandstructs.o: ../Core/TPM/commandstructs.c \
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi_ex.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h:
-../Core/TPM/commandfuncs.h:
+../Core/TPM/commandFuncs.h:
+../Core/TPM/nvStoreFuncs.h:
+../Core/TPM/globals.h:
+../Core/TPM/authHandler.h:
+../Core/TPM/utils.h:

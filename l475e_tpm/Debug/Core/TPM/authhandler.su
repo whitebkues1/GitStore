@@ -1,0 +1,4 @@
+../Core/TPM/authhandler.c:13:9:inAuthHandler	48	static
+../Core/TPM/authhandler.c:165:9:outAuthHandler	56	static
+../Core/TPM/authhandler.c:307:6:encAuthHandler	56	static
+../Core/TPM/authhandler.c:348:6:dumpHMACparms	24	static

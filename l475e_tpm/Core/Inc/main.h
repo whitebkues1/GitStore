@@ -36,6 +36,7 @@ extern "C" {
 #include <string.h>
 #include <stdarg.h>
 #include <stdlib.h>
+#include <time.h>
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
