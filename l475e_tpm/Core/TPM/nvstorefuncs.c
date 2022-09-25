@@ -8,6 +8,7 @@
 #include "physical.h"
 #include "utils.h"
 #include "conf_board.h"
+#include "middle.h"
 
 
 #define NVM_READ_FULL_BUFFER_WORD_SIZE 16*(IFLASH_PAGE_SIZE / sizeof(uint32_t))
@@ -33,8 +34,8 @@ struct {
 	uint32_t* SRKAuthEE;		/* FLASH page address */
 	} nvmAddr_var_t = {
 
-	(uint32_t*)0x005FEC40,
-	(uint32_t*)0x005FEC54,
+	(uint32_t*)0x08080270,
+	(uint32_t*)0x08080284,
 
 };
 
@@ -48,13 +49,13 @@ struct {
 
 	} nvmAddr_KeyStore_t = {
 	/* KeyValid FLASH Memory Address */
-	{(uint32_t*)0x005FE000, (uint32_t*)0x005FE004, (uint32_t*)0x005FE008, (uint32_t*)0x005FE00C, (uint32_t*)0x005FE010},
+	{(uint32_t*)0x08080000, (uint32_t*)0x08080004, (uint32_t*)0x08080008, (uint32_t*)0x0808000C, (uint32_t*)0x08080010},
 	/* KeySize FLASH Memory Address */
-	{(uint32_t*)0x005FE014, (uint32_t*)0x005FE018, (uint32_t*)0x005FE01C, (uint32_t*)0x005FE020, (uint32_t*)0x005FE024},
+	{(uint32_t*)0x08080014, (uint32_t*)0x08080018, (uint32_t*)0x0808001C, (uint32_t*)0x08080020, (uint32_t*)0x08080024},
 	/* KeyAuth FLASH Memory Address */
-	{(uint32_t*)0x005FE028, (uint32_t*)0x005FE03C, (uint32_t*)0x005FE050, (uint32_t*)0x005FE064, (uint32_t*)0x005FE078},
+	{(uint32_t*)0x08080028, (uint32_t*)0x0808002C, (uint32_t*)0x08080030, (uint32_t*)0x08080034, (uint32_t*)0x08080038},
 	/* KeyData FLASH Memory Address */
-	{(uint32_t*)0x005FE07C, (uint32_t*)0x005FE2E4, (uint32_t*)0x005FE54C, (uint32_t*)0x005FE7B4, (uint32_t*)0x005FEA1C},
+	{(uint32_t*)0x0808003C, (uint32_t*)0x08080040, (uint32_t*)0x08080044, (uint32_t*)0x08080048, (uint32_t*)0x0808004C},
 };
 
 
@@ -67,20 +68,20 @@ struct {
 	
 	} nvmAddr_loadedKeyStore_t = {
 	/* KeyValid FLASH Memory Address */
-	{	(uint32_t*)0x005FEA20, (uint32_t*)0x005FEA24, (uint32_t*)0x005FEA28, (uint32_t*)0x005FEA2C, (uint32_t*)0x005FEA30,
-		(uint32_t*)0x005FEA34, (uint32_t*)0x005FEA38, (uint32_t*)0x005FEA3C, (uint32_t*)0x005FEA40, (uint32_t*)0x005FEA44,
-		(uint32_t*)0x005FEA48, (uint32_t*)0x005FEA4C, (uint32_t*)0x005FEA50, (uint32_t*)0x005FEA54, (uint32_t*)0x005FEA58,
-		(uint32_t*)0x005FEA5C, (uint32_t*)0x005FEA60, (uint32_t*)0x005FEA64, (uint32_t*)0x005FEA68, (uint32_t*)0x005FEA6C},
+	{	(uint32_t*)0x08080050, (uint32_t*)0x08080054, (uint32_t*)0x08080058, (uint32_t*)0x0808005C, (uint32_t*)0x08080060,
+		(uint32_t*)0x08080064, (uint32_t*)0x08080068, (uint32_t*)0x0808006C, (uint32_t*)0x08080070, (uint32_t*)0x08080074,
+		(uint32_t*)0x08080078, (uint32_t*)0x0808007C, (uint32_t*)0x08080080, (uint32_t*)0x08080084, (uint32_t*)0x08080088,
+		(uint32_t*)0x0808008C, (uint32_t*)0x08080090, (uint32_t*)0x08080094, (uint32_t*)0x08080098, (uint32_t*)0x0808009C},
 	/* KeyAuth FLASH Memory Address */
-	{	(uint32_t*)0x005FEA70, (uint32_t*)0x005FEA84, (uint32_t*)0x005FEA98, (uint32_t*)0x005FEAAC, (uint32_t*)0x005FEAC0,
-		(uint32_t*)0x005FEAD4, (uint32_t*)0x005FEAE8, (uint32_t*)0x005FEAFC, (uint32_t*)0x005FEB10, (uint32_t*)0x005FEB24,
-		(uint32_t*)0x005FEB38, (uint32_t*)0x005FEB4C, (uint32_t*)0x005FEB60, (uint32_t*)0x005FEB74, (uint32_t*)0x005FEB88,
-		(uint32_t*)0x005FEB9C, (uint32_t*)0x005FEBB0, (uint32_t*)0x005FEBC4, (uint32_t*)0x005FEBD8, (uint32_t*)0x005FEBEC},
+	{	(uint32_t*)0x080800A0, (uint32_t*)0x080800B4, (uint32_t*)0x080800C8, (uint32_t*)0x080800DC, (uint32_t*)0x080800F0,
+		(uint32_t*)0x08080104, (uint32_t*)0x08080118, (uint32_t*)0x0808012C, (uint32_t*)0x08080140, (uint32_t*)0x08080154,
+		(uint32_t*)0x08080168, (uint32_t*)0x0808017C, (uint32_t*)0x08080190, (uint32_t*)0x080801A4, (uint32_t*)0x080801B8,
+		(uint32_t*)0x080801CC, (uint32_t*)0x080801E0, (uint32_t*)0x080801F4, (uint32_t*)0x08080208, (uint32_t*)0x0808021C},
 	/* KeyHandle FLASH Memory Address */
-	{	(uint32_t*)0x005FEBF0, (uint32_t*)0x005FEBF4, (uint32_t*)0x005FEBF8, (uint32_t*)0x005FEBFC, (uint32_t*)0x005FEC00,
-		(uint32_t*)0x005FEC04, (uint32_t*)0x005FEC08, (uint32_t*)0x005FEC0C, (uint32_t*)0x005FEC10, (uint32_t*)0x005FEC14,
-		(uint32_t*)0x005FEC18, (uint32_t*)0x005FEC1C, (uint32_t*)0x005FEC20, (uint32_t*)0x005FEC24, (uint32_t*)0x005FEC28,
-		(uint32_t*)0x005FEC2C, (uint32_t*)0x005FEC30, (uint32_t*)0x005FEC34, (uint32_t*)0x005FEC38, (uint32_t*)0x005FEC3C},
+	{	(uint32_t*)0x08080220, (uint32_t*)0x08080224, (uint32_t*)0x08080228, (uint32_t*)0x0808022C, (uint32_t*)0x08080230,
+		(uint32_t*)0x08080234, (uint32_t*)0x08080238, (uint32_t*)0x0808023C, (uint32_t*)0x08080240, (uint32_t*)0x08080244,
+		(uint32_t*)0x08080248, (uint32_t*)0x0808024C, (uint32_t*)0x08080250, (uint32_t*)0x08080254, (uint32_t*)0x08080258,
+		(uint32_t*)0x0808025C, (uint32_t*)0x08080260, (uint32_t*)0x08080264, (uint32_t*)0x08080268, (uint32_t*)0x0808026C},
 
 };
 
@@ -605,18 +606,18 @@ uint8_t nvm_write(uint8_t *psrc, uint32_t *pdest, uint16_t size)
 	uint16_t pus_offset;
 	uint32_t ul_idx;
 	uint32_t ul_page_buffer[NVM_READ_HALF_BUFFER_WORD_SIZE]; //NVM_READ_FULL_BUFFER_WORD_SIZE
-    Efc *pp_efc;
+//    Efc *pp_efc;
 	
 	/* determine current FLASH page  and offset */
-	translate_address(&pp_efc, (uint32_t)pdest, &pus_page, &pus_offset);
+	translate_address((uint32_t)pdest, &pus_page, &pus_offset);
 	
 	asm("nop");
 
 	/* variable initialization */
-	ul_block_addr			= 0x005FE000;
+	ul_block_addr			= 0x08080000;
 
 	/* determine uin32_t page address given FLASH page an offset */
-	compute_address(pp_efc, pus_page, 0, &ul_page_addr);
+	compute_address(pus_page, 0, &ul_page_addr);
 	
 	/* set block address */						
 	pul_block_addr	= 	(uint32_t*)ul_block_addr;
@@ -657,26 +658,31 @@ uint8_t nvm_write(uint8_t *psrc, uint32_t *pdest, uint16_t size)
 
 
  	/* Unlock page */
-	if(flash_unlock(ul_block_addr,ul_block_addr + IFLASH_PAGE_SIZE - 1, 0, 0) != FLASH_RC_OK){
-		return 0;
-	}
+	HAL_FLASH_Unlock();
 
 	/* The EWP command is not supported for non-8KByte sectors in all devices
 		*  SAM4 series, so an erase command is required before the write operation.
 		*/
-	cpu_irq_enter_critical();
-	retCode =  flash_erase_page(ul_block_addr, IFLASH_ERASE_PAGES_16);
-	cpu_irq_leave_critical();
+	//cpu_irq_enter_critical();
+	FLASH_EraseInitTypeDef EraseInitStruct;
+	EraseInitStruct.TypeErase   = FLASH_TYPEERASE_PAGES;
+	EraseInitStruct.Banks       = FLASH_BANK_2;
+	EraseInitStruct.Page        = 0;
+	EraseInitStruct.NbPages     = 4;
+//	retCode =  flash_erase_page(ul_block_addr, IFLASH_ERASE_PAGES_16);
+	uint32_t PAGEError = 0;
+	retCode =  HAL_FLASHEx_Erase(&EraseInitStruct, &PAGEError);
+	//cpu_irq_leave_critical();
 			
-	if(retCode != FLASH_RC_OK){
+	if(retCode != HAL_OK){
 		return 0;
-	}	
+	}
 	
-	cpu_irq_enter_critical();
+	//cpu_irq_enter_critical();
 	retCode = flash_write(ul_block_addr, ul_page_buffer,NVM_READ_HALF_BUFFER_BYTE_SIZE /* NVM_READ_FULL_BUFFER_BYTE_SIZE*/, 0);
-	cpu_irq_leave_critical();
+	//cpu_irq_leave_critical();
 		
-	if( retCode != FLASH_RC_OK) {	
+	if( retCode != HAL_OK) {
 		return 0;
 	}
 	  
@@ -688,12 +694,9 @@ uint8_t nvm_write(uint8_t *psrc, uint32_t *pdest, uint16_t size)
 	}
 
 	/* Lock page */
-	if(flash_lock(ul_block_addr,ul_block_addr + IFLASH_PAGE_SIZE - 1, 0, 0) != FLASH_RC_OK)
-	{
-		return 0;
-	}
+	HAL_FLASH_Lock();
 
-	delay_ms(10);
+	HAL_Delay(10);
 	return 1;
 
 }
@@ -735,14 +738,14 @@ uint8_t nvm_read(uint8_t *pdest, uint32_t *psrc, uint16_t size)
 	uint16_t pus_page;
 	uint16_t pus_offset;
 	
-	Efc *pp_efc;	
+	//Efc *pp_efc;
 	ul_idx = 0;
 	
 	/* determine current FLASH page  and offset */
-	translate_address(&pp_efc, (uint32_t)psrc, &pus_page, &pus_offset);
+	translate_address((uint32_t)psrc, &pus_page, &pus_offset);
 	
 	/* determine uin32_t page address given FLASH page an offset */
-	compute_address(pp_efc, pus_page, 0, &ul_base_page_addr);
+	compute_address(pus_page, 0, &ul_base_page_addr);
 	
 	pul_base_page_addr		=   (uint32_t*)ul_base_page_addr;
 	
@@ -897,10 +900,10 @@ uint8_t nvm_setup(uint8_t *psrc, uint32_t *pdest, uint16_t size)
 	static uint16_t pus_offset;
 
 
-    Efc *pp_efc;	
+    //Efc *pp_efc;
 
-	translate_address(&pp_efc, (uint32_t)pdest, &pus_page, &pus_offset);
-	compute_address(pp_efc, pus_page, 0, &ul_page_addr);
+	translate_address((uint32_t)pdest, &pus_page, &pus_offset);
+	compute_address(pus_page, 0, &ul_page_addr);
 	
 			
 			
@@ -931,16 +934,14 @@ uint8_t nvm_setup(uint8_t *psrc, uint32_t *pdest, uint16_t size)
 		
 			
 	/* Unlock page */
-	if(flash_unlock(ul_page_addr,ul_page_addr + IFLASH_PAGE_SIZE - 1, 0, 0) != FLASH_RC_OK){
-		return 0;
-	}
+	HAL_FLASH_Unlock();
 
 	/* The EWP command is not supported for non-8KByte sectors in all devices
 	 *  SAM4 series, so an erase command is required before the write operation.
 	 */
-	if(flash_erase_sector(ul_page_addr)  != FLASH_RC_OK){
-		return 0;
-	}
+//	if(flash_erase_sector(ul_page_addr)  != FLASH_RC_OK){
+//		return 0;
+//	}
 
 
 	/* write all 4 pages */
@@ -948,12 +949,12 @@ uint8_t nvm_setup(uint8_t *psrc, uint32_t *pdest, uint16_t size)
 	for(i=0; i < 16; i++)
 	{
 
-		if(flash_write(ul_page_addr, ul_page_buffer,IFLASH_PAGE_SIZE, 0)  != FLASH_RC_OK) {
+		if(flash_write(ul_page_addr, ul_page_buffer,FLASH_PAGE_SIZE, 0)  != HAL_OK) {
 			return 0;
 		}
 			
 		pus_page++;
-		compute_address(pp_efc, pus_page, 0, &ul_page_addr);
+		compute_address(pus_page, 0, &ul_page_addr);
 		
 	}
 

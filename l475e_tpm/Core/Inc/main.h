@@ -37,6 +37,8 @@ extern "C" {
 #include <stdarg.h>
 #include <stdlib.h>
 #include <time.h>
+#include "stm32l4xx_hal_flash_ex.h"
+#include "stm32l4xx_hal_flash.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

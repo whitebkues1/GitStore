@@ -303,22 +303,13 @@ bool flush_tpm()
 
 
 	/* send command bytes */
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, GPIO_PIN_RESET);
-	for (i = 0; i < CMD_SIZE; i++) {
-		//spi_write(SPI_MASTER_BASE, *(p_buf+i), 0, 0);
-		HAL_SPI_Transmit(&hspi1, &p_buf[i], sizeof(p_buf[i]), 1000);
-		
-		/* Wait transfer done. */
-		//while ((spi_read_status(SPI_MASTER_BASE) & SPI_SR_RDRF) == 0);
-		
-		/* Read Data. */
-		//spi_read(SPI_MASTER_BASE, &data, &uc_pcs);
-		uint8_t tmpdata[2] = {0};
-		HAL_SPI_Receive(&hspi1, tmpdata, sizeof(tmpdata), 1000);
-		data = (uint16_t)tmpdata[0];
-		data = (data << 8);
-		data |= (uint16_t)tmpdata[1];
-		//*(p_buf+i) = data;
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
+	for (i = 0; i < CMD_SIZE; i++)
+	{
+		uint8_t temp = 0;
+		HAL_SPI_TransmitReceive(&hspi1, &p_buf[i], &temp, 1, 1000);
+		data = temp;
+
 	}
 	
 	retry = 0;
@@ -329,21 +320,11 @@ bool flush_tpm()
 		if((data & WAIT_STATE_MASK) == WAIT_STATE_REQUIRED)
 		{
 			
-			//spi_write(SPI_MASTER_BASE, 0xFF, 0, 0);
 			uint8_t tmp = 0xFF;
-			HAL_SPI_Transmit(&hspi1, &tmp, sizeof(tmp), 1000);
-					
-			/* Wait transfer done. */
-			//while ((spi_read_status(SPI_MASTER_BASE) & SPI_SR_RDRF) == 0)
-			;
-					
-			/* Read Data. */
-			 //spi_read(SPI_MASTER_BASE, &data, &uc_pcs);
-			 uint8_t tmpdata[2] = {0};
-			 HAL_SPI_Receive(&hspi1, tmpdata, sizeof(tmpdata), 1000);
-			 data = (uint16_t)tmpdata[0];
-			 data = (data << 8);
-			 data |= (uint16_t)tmpdata[1];
+			uint8_t temp = 0;
+			HAL_SPI_TransmitReceive(&hspi1, &tmp, &temp, 1, 1000);
+			data = temp;
+
 
 		}
 		
@@ -376,28 +357,21 @@ bool flush_tpm()
 		{
 			if((*p_buf) == SPI_READ_CMD)
 			{
-				//spi_write(SPI_MASTER_BASE, 0xFF, 0, 0);
+
 				uint8_t tmp = 0xFF;
-				HAL_SPI_Transmit(&hspi1, &tmp, sizeof(tmp), 1000);
+				uint8_t temp = 0;
+				HAL_SPI_TransmitReceive(&hspi1, &tmp, &temp, 1, 1000);
+				data = temp;
 			}
 
 			else
 			{
-				//spi_write(SPI_MASTER_BASE, *(p_buf+ CMD_SIZE + i), 0, 0);
-				HAL_SPI_Transmit(&hspi1, &p_buf[CMD_SIZE + i], sizeof(p_buf[CMD_SIZE + i]), 1000);
+				uint8_t temp = 0;
+				HAL_SPI_TransmitReceive(&hspi1, &p_buf[CMD_SIZE + i], &temp, 1, 1000);
+				data = temp;
 			}
 
 		
-			/* Wait transfer done. */
-			//while ((spi_read_status(SPI_MASTER_BASE) & SPI_SR_RDRF) == 0);
-		
-			/* Read Data. */
-			//spi_read(SPI_MASTER_BASE, &data, &uc_pcs);
-			uint8_t tmpdata[2] = {0};
-			HAL_SPI_Receive(&hspi1, tmpdata, sizeof(tmpdata), 1000);
-			data = (uint16_t)tmpdata[0];
-			data = (data << 8);
-			data |= (uint16_t)tmpdata[1];
 			*(resp+i) = data;
 			
 			
@@ -427,7 +401,7 @@ bool flush_tpm()
 
 		}		
 	}
-
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
 	//cpu_irq_leave_critical();
 
 	HAL_Delay(10);
